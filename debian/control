@@ -1,0 +1,12 @@
+Source: ros-rolling-rosx-introspection
+Section: misc
+Priority: optional
+Maintainer: Davide Faconti <davide.faconti@gmail.com>
+Build-Depends: debhelper (>= 9.0.0), rapidjson-dev, ros-rolling-ament-cmake, ros-rolling-ament-index-cpp, ros-rolling-fastcdr, ros-rolling-geometry-msgs <!nocheck>, ros-rolling-rclcpp, ros-rolling-rosbag2-cpp, ros-rolling-sensor-msgs <!nocheck>, ros-rolling-ros-workspace
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-rolling-rosx-introspection
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, rapidjson-dev, ros-rolling-ament-index-cpp, ros-rolling-fastcdr, ros-rolling-rclcpp, ros-rolling-rosbag2-cpp, ros-rolling-ros-workspace
+Description: Successor of ros_type_introspection
