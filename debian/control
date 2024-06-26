@@ -1,0 +1,12 @@
+Source: ros-humble-rosx-introspection
+Section: misc
+Priority: optional
+Maintainer: Davide Faconti <davide.faconti@gmail.com>
+Build-Depends: debhelper (>= 9.0.0), rapidjson-dev, ros-humble-ament-cmake, ros-humble-ament-index-cpp, ros-humble-fastcdr, ros-humble-geometry-msgs <!nocheck>, ros-humble-rclcpp, ros-humble-rosbag2-cpp, ros-humble-sensor-msgs <!nocheck>, ros-humble-ros-workspace
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-humble-rosx-introspection
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, rapidjson-dev, ros-humble-ament-index-cpp, ros-humble-fastcdr, ros-humble-rclcpp, ros-humble-rosbag2-cpp, ros-humble-ros-workspace
+Description: Successor of ros_type_introspection
