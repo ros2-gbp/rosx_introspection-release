@@ -1,8 +1,0 @@
-ros-jazzy-rosx-introspection (1.0.0-1noble) noble; urgency=high
-
-  * New version including JSON conversion
-  * Contributors: Basavaraj-PN, Davide Faconti, ahmad-ra
-
- -- Davide Faconti <davide.faconti@gmail.com>  Tue, 25 Jun 2024 22:00:00 -0000
-
-
