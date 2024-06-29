@@ -1,13 +1,11 @@
 cmake_minimum_required(VERSION 3.10)
 
-project(rosx_introspection  LANGUAGES C CXX VERSION 1.0.0)
+project(rosx_introspection LANGUAGES CXX VERSION 1.0.1)
 
-# Build flags
-#---- Enable C++17 ----
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+option(CMAKE_POSITION_INDEPENDENT_CODE "Set -fPIC" ON)
+
+include(cmake/CPM.cmake)
 
 find_package(ament_cmake QUIET)
 
@@ -23,23 +21,11 @@ if (ament_cmake_FOUND)
        src/ros_utils/ros2_helpers.cpp)
 endif()
 
-find_package(RapidJSON REQUIRED)
-
-if(NOT USING_ROS2 )
-    message(STATUS "[FastCdr] not found, create static libraries")
-    # Override Fast-CDR option: compile as static lib
-    SET(BUILD_SHARED_LIBS OFF CACHE BOOL "Create static libraries by default")
-    add_subdirectory(3rdparty/Fast-CDR)
-    include_directories(3rdparty/Fast-CDR/include)
-else()
-    # Mention that FastCdr has been found on system
-    message(STATUS "[FastCdr] found, version: ${fastcdr_VERSION}")
-endif()
 
 ###############################################
 ## Declare a C++ library
 ###############################################
-add_library(rosx_introspection STATIC
+add_library(rosx_introspection
     ${SRC_FILES}
     src/ros_type.cpp
     src/ros_field.cpp
@@ -51,17 +37,39 @@ add_library(rosx_introspection STATIC
     ${EXTRA_SRC}
     )
 
+target_include_directories(rosx_introspection PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+    $<INSTALL_INTERFACE:include>)
+target_compile_features(rosx_introspection PUBLIC cxx_std_17)
+
 if(USING_ROS2)
     ament_target_dependencies(rosx_introspection
         ament_index_cpp
         rclcpp
         rosbag2_cpp
         fastcdr)
+else()
+    message(STATUS "Downloading FastCDR with CPM and building as static library")
+    # Override Fast-CDR option: compile as static lib
+    # set(BUILD_SHARED_LIBS OFF CACHE BOOL "Create static libraries by default")
+
+    CPMAddPackage(NAME fastcdr
+                  GIT_TAG v2.2.2
+                  GITHUB_REPOSITORY "eProsima/Fast-CDR"
+                  OPTIONS "BUILD_SHARED_LIBS OFF")
+    target_link_libraries(rosx_introspection fastcdr)
 endif()
 
-target_include_directories(rosx_introspection PUBLIC
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-    )
+
+find_package(RapidJSON QUIET)
+
+if(NOT RapidJSON_FOUND)
+    message(STATUS "Downloading RapidJSON with CPM")    
+    CPMAddPackage(NAME rapidjson
+        GIT_TAG v1.1.0
+        GITHUB_REPOSITORY "Tencent/rapidjson"
+        OPTIONS "RAPIDJSON_BUILD_EXAMPLES OFF" "RAPIDJSON_BUILD_TESTS OFF" "RAPIDJSON_BUILD_DOC OFF")
+endif()
 
 
 ###############################################
@@ -87,21 +95,21 @@ if(USING_ROS2)
             $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>)
     endif()
 
-    install(
-        DIRECTORY include/
-        DESTINATION include
-        )
-
-    install(TARGETS rosx_introspection
-        EXPORT rosx_introspectionTargets
-        ARCHIVE DESTINATION lib
-        LIBRARY DESTINATION lib
-        RUNTIME DESTINATION bin
-        INCLUDES DESTINATION include
-        )
-
     ament_export_targets(rosx_introspectionTargets HAS_LIBRARY_TARGET)
     ament_export_dependencies(ament_index_cpp rosbag2_cpp fastcdr)
     ament_package()
 
 endif()
+
+include(GNUInstallDirs)
+install(
+    DIRECTORY include/
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+)
+install(TARGETS rosx_introspection
+    EXPORT rosx_introspectionTargets
+    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+    INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+)
