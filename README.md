@@ -1,3 +1,26 @@
+## rosx_introspection (iron) - 1.0.2-1
+
+The packages in the `rosx_introspection` repository were released into the `iron` distro by running `/usr/bin/bloom-release --rosdistro iron rosx_introspection -y` on `Sun, 28 Jul 2024 14:53:28 -0000`
+
+The `rosx_introspection` package was released.
+
+Version of package(s) in repository `rosx_introspection`:
+
+- upstream repository: https://github.com/facontidavide/rosx_introspection.git
+- release repository: https://github.com/ros2-gbp/rosx_introspection-release.git
+- rosdistro version: `1.0.1-1`
+- old version: `1.0.1-1`
+- new version: `1.0.2-1`
+
+Versions of tools used:
+
+- bloom version: `0.12.0`
+- catkin_pkg version: `1.0.0`
+- rosdep version: `0.24.0`
+- rosdistro version: `0.9.1`
+- vcstools version: `0.1.42`
+
+
 ## rosx_introspection (humble) - 1.0.2-2
 
 The packages in the `rosx_introspection` repository were released into the `humble` distro by running `/usr/bin/bloom-release --rosdistro humble rosx_introspection -y` on `Sun, 28 Jul 2024 14:49:14 -0000`
