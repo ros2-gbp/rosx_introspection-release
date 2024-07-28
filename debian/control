@@ -1,0 +1,12 @@
+Source: ros-jazzy-rosx-introspection
+Section: misc
+Priority: optional
+Maintainer: Davide Faconti <davide.faconti@gmail.com>
+Build-Depends: debhelper (>= 9.0.0), rapidjson-dev, ros-jazzy-ament-cmake, ros-jazzy-ament-index-cpp, ros-jazzy-fastcdr, ros-jazzy-geometry-msgs <!nocheck>, ros-jazzy-rclcpp, ros-jazzy-rosbag2-cpp, ros-jazzy-sensor-msgs <!nocheck>, ros-jazzy-ros-workspace
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-jazzy-rosx-introspection
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, rapidjson-dev, ros-jazzy-ament-index-cpp, ros-jazzy-fastcdr, ros-jazzy-rclcpp, ros-jazzy-rosbag2-cpp, ros-jazzy-ros-workspace
+Description: Successor of ros_type_introspection
