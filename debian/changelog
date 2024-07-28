@@ -1,0 +1,24 @@
+ros-rolling-rosx-introspection (1.0.2-1bookworm) bookworm; urgency=high
+
+  * bug fix
+  * add unit tests
+  * Contributors: Davide Faconti
+
+ -- Davide Faconti <davide.faconti@gmail.com>  Sat, 27 Jul 2024 22:00:00 -0000
+
+ros-rolling-rosx-introspection (1.0.1-1bookworm) bookworm; urgency=high
+
+  * use CPM to download dependenies
+  * Merge pull request #9 <https://github.com/facontidavide/rosx_introspection/issues/9> from valgur/feature/cmake-improvements
+  * Contributors: Davide Faconti, Martin Valgur
+
+ -- Davide Faconti <davide.faconti@gmail.com>  Fri, 28 Jun 2024 22:00:00 -0000
+
+ros-rolling-rosx-introspection (1.0.0-1bookworm) bookworm; urgency=high
+
+  * New version including JSON conversion
+  * Contributors: Basavaraj-PN, Davide Faconti, ahmad-ra
+
+ -- Davide Faconti <davide.faconti@gmail.com>  Tue, 25 Jun 2024 22:00:00 -0000
+
+
