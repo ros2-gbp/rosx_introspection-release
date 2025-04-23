@@ -1,0 +1,12 @@
+Source: ros-kilted-rosx-introspection
+Section: misc
+Priority: optional
+Maintainer: Davide Faconti <davide.faconti@gmail.com>
+Build-Depends: debhelper (>= 9.0.0), rapidjson-dev, ros-kilted-ament-cmake, ros-kilted-ament-index-cpp, ros-kilted-fastcdr, ros-kilted-geometry-msgs <!nocheck>, ros-kilted-rclcpp, ros-kilted-rosbag2-cpp, ros-kilted-sensor-msgs <!nocheck>, ros-kilted-ros-workspace
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-kilted-rosx-introspection
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, rapidjson-dev, ros-kilted-ament-index-cpp, ros-kilted-fastcdr, ros-kilted-rclcpp, ros-kilted-rosbag2-cpp, ros-kilted-ros-workspace
+Description: Successor of ros_type_introspection

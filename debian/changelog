@@ -1,0 +1,24 @@
+ros-kilted-rosx-introspection (1.0.2-2noble) noble; urgency=high
+
+  * bug fix
+  * add unit tests
+  * Contributors: Davide Faconti
+
+ -- Davide Faconti <davide.faconti@gmail.com>  Sun, 28 Jul 2024 05:00:00 -0000
+
+ros-kilted-rosx-introspection (1.0.1-2noble) noble; urgency=high
+
+  * use CPM to download dependenies
+  * Merge pull request #9 <https://github.com/facontidavide/rosx_introspection/issues/9> from valgur/feature/cmake-improvements
+  * Contributors: Davide Faconti, Martin Valgur
+
+ -- Davide Faconti <davide.faconti@gmail.com>  Sat, 29 Jun 2024 05:00:00 -0000
+
+ros-kilted-rosx-introspection (1.0.0-2noble) noble; urgency=high
+
+  * New version including JSON conversion
+  * Contributors: Basavaraj-PN, Davide Faconti, ahmad-ra
+
+ -- Davide Faconti <davide.faconti@gmail.com>  Wed, 26 Jun 2024 05:00:00 -0000
+
+
