@@ -1,3 +1,26 @@
+## rosx_introspection (rolling) - 2.2.0-1
+
+The packages in the `rosx_introspection` repository were released into the `rolling` distro by running `/usr/bin/bloom-release --rosdistro rolling rosx_introspection -y` on `Fri, 06 Mar 2026 18:08:21 -0000`
+
+The `rosx_introspection` package was released.
+
+Version of package(s) in repository `rosx_introspection`:
+
+- upstream repository: https://github.com/facontidavide/rosx_introspection.git
+- release repository: https://github.com/ros2-gbp/rosx_introspection-release.git
+- rosdistro version: `2.1.0-2`
+- old version: `2.1.0-2`
+- new version: `2.2.0-1`
+
+Versions of tools used:
+
+- bloom version: `0.13.0`
+- catkin_pkg version: `1.1.0`
+- rosdep version: `0.26.0`
+- rosdistro version: `1.0.1`
+- vcstools version: `0.1.42`
+
+
 ## rosx_introspection (kilted) - 2.2.0-1
 
 The packages in the `rosx_introspection` repository were released into the `kilted` distro by running `/usr/bin/bloom-release --rosdistro kilted rosx_introspection -y` on `Fri, 06 Mar 2026 18:04:21 -0000`
