@@ -85,10 +85,12 @@ endif(ROSX_HAS_JSON)
 ## Install and Tests
 ###############################################
 if(BUILD_TESTING)
+    enable_testing()
+
     if(USING_ROS2)
+        find_package(ament_cmake_gtest REQUIRED)
         find_package(sensor_msgs REQUIRED)
         find_package(geometry_msgs REQUIRED)
-        find_package(ament_cmake_gtest REQUIRED)
 
         ament_add_gtest(rosx_introspection_test
             test/test_parser.cpp
@@ -102,18 +104,26 @@ if(BUILD_TESTING)
 
         target_include_directories(rosx_introspection_test PUBLIC
                 $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>)
-    endif(USING_ROS2)
 
-    find_package(GTest REQUIRED)
-
-    add_executable(parser_test
+        ament_add_gtest(parser_test
             test/test_parser.cpp
             test/test_encoding.cpp)
 
-    target_link_libraries(parser_test rosx_introspection GTest::GTest GTest::Main)
-    target_include_directories(parser_test PUBLIC
+        target_link_libraries(parser_test rosx_introspection)
+        target_include_directories(parser_test PUBLIC
                 $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>)
-    add_test(NAME parser_test COMMAND parser_test)
+    else()
+        find_package(GTest REQUIRED)
+
+        add_executable(parser_test
+                test/test_parser.cpp
+                test/test_encoding.cpp)
+
+        target_link_libraries(parser_test rosx_introspection GTest::GTest GTest::Main)
+        target_include_directories(parser_test PUBLIC
+                    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>)
+        add_test(NAME parser_test COMMAND parser_test)
+    endif()
 
 endif(BUILD_TESTING)
 
@@ -121,9 +131,21 @@ endif(BUILD_TESTING)
 ## Benchmarks
 ###############################################
 option(BUILD_BENCHMARKS "Build benchmark executables" OFF)
-if(BUILD_BENCHMARKS AND USING_ROS2)
+if(BUILD_BENCHMARKS)
+    find_package(PkgConfig REQUIRED)
+    pkg_check_modules(LZ4 REQUIRED IMPORTED_TARGET liblz4)
+    pkg_check_modules(ZSTD REQUIRED IMPORTED_TARGET libzstd)
+
+    CPMAddPackage(
+        NAME mcap
+        GIT_TAG releases/cpp/v2.1.3
+        GITHUB_REPOSITORY "foxglove/mcap"
+        DOWNLOAD_ONLY YES
+    )
+
     add_executable(mcap_benchmark test/benchmark_mcap.cpp)
-    target_link_libraries(mcap_benchmark rosx_introspection)
+    target_link_libraries(mcap_benchmark rosx_introspection PkgConfig::LZ4 PkgConfig::ZSTD)
+    target_include_directories(mcap_benchmark PRIVATE ${mcap_SOURCE_DIR}/cpp/mcap/include)
 endif()
 
 if(USING_ROS2)
