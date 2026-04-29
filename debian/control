@@ -1,0 +1,12 @@
+Source: ros-lyrical-rosx-introspection
+Section: misc
+Priority: optional
+Maintainer: Davide Faconti <davide.faconti@gmail.com>
+Build-Depends: debhelper (>= 9.0.0), rapidjson-dev, ros-lyrical-ament-cmake, ros-lyrical-ament-cmake-gtest <!nocheck>, ros-lyrical-ament-index-cpp, ros-lyrical-geometry-msgs <!nocheck>, ros-lyrical-rclcpp, ros-lyrical-rosbag2-cpp, ros-lyrical-sensor-msgs <!nocheck>, ros-lyrical-ros-workspace
+Homepage: https://index.ros.org/p/rosx_introspection/#lyrical
+Standards-Version: 3.9.2
+
+Package: ros-lyrical-rosx-introspection
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, rapidjson-dev, ros-lyrical-ament-index-cpp, ros-lyrical-rclcpp, ros-lyrical-rosbag2-cpp, ros-lyrical-ros-workspace
+Description: Parse any ROS/ROS2 message without compile-time information
